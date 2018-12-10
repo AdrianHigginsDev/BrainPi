@@ -1,7 +1,8 @@
-const components  = require("../vendor/brainpi/src/Config/index");
-const init        = require("./bin/init");
-const MySqlConfig = require("./bin/MySqlConfig");
-const CsvConfig   = require("./bin/CsvConfig");
+const components    = require("../vendor/brainpi/src/Config/index"),
+      init          = require("./bin/init"),
+      MySqlConfig   = require("./bin/MySqlConfig"),
+      CsvConfig     = require("./bin/CsvConfig"),
+      MongoDbConfig = require("./bin/MongoDbConfig");
 
 class Config {
 
@@ -19,10 +20,13 @@ class Config {
         switch( dataType.toLowerCase() ) {
 
             case 'mysql': {
-                return this.handleMySql(dataString);
+                return this.handleMySql( dataString );
+            }
+            case 'mongodb': {
+                return this.handleMongoDb( dataString );
             }
             case 'csv': {
-                return this.handleCsv(dataString);
+                return this.handleCsv( dataString );
             }
             default: {
                 return null;
@@ -32,16 +36,26 @@ class Config {
 
     handleMySql( dataString ) {
 
-        const MySqlClass = MySqlConfig.process( dataString , this.configurationFile );
+        const MySql = MySqlConfig.process( dataString , this.configurationFile );
 
-        return MySqlClass;
+        return MySql;
 
     }
 
     handleCsv( dataString ) {
 
-        CsvConfig.process( dataString , this.configurationFile );
+        const Csv = CsvConfig.process( dataString , this.configurationFile );
 
+        return Csv;
+
+    }
+
+    handleMongoDb( dataString ) {
+
+        const MongoDb = MongoDbConfig.process( dataString , this.configurationFile );
+
+        return MongoDb;
+        
     }
 }
 

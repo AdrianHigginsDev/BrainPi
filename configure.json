@@ -1,7 +1,8 @@
 {
     "app": {
         "name": "BrainPi",
-        "key": ""
+        "key": "",
+        "dir": "/Users/adrianhiggins/Documents/JavaScript/NodeProjects/BrainPI/"
     },
 
     "data": {
@@ -15,18 +16,19 @@
 
     "database": {
         "dataNodeOne": {
-            "CONNECTION": "MySql",
-            "HOST": "",
-            "PORT": "",
-            "DATABASE": "",
-            "USERNAME": "",
-            "PASSWORD": ""
+            "connection": "MySql",
+            "host": "",
+            "port": "",
+            "database": "",
+            "username": "",
+            "password": ""
         }
     },
 
     "filesystem": {
         "dataNodeTwo": {
-            "type": "public",
+            "type": "Csv",
+            "ref": "public",
             "path": "/data/dataNodeTwo/"
         }
     }

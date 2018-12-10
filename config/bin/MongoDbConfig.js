@@ -1,12 +1,12 @@
-var MySqlClass = require("../../vendor/brainpi/src/MySql/MySql");
+var MongoDbClass = require("../../vendor/brainpi/src/MongoDb/MongoDb");
 
-class MySqlConfig {
+class MongoDbConfig {
 
     constructor() {
-        this.MySql = null;
+        this.MongoDb = null;
     }
 
-    // Transale the requested Data Node into a MySQL object
+    // Transale the requested Data Node into a MongoDb object
     process( dataString , configurationFile ) {
 
         const database = eval("configurationFile.database."+dataString);
@@ -15,7 +15,7 @@ class MySqlConfig {
             process.exit(22);
         }
 
-        this.MySql = new MySqlClass(
+        this.MongoDb = new MongoDbClass(
             database.connection,
             database.host,
             database.port,
@@ -24,10 +24,10 @@ class MySqlConfig {
             database.password
         );
 
-        return this.MySql;
+        return this.MongoDb;
 
     }
 
 }
 
-module.exports = new MySqlConfig();
+module.exports = new MongoDbConfig();

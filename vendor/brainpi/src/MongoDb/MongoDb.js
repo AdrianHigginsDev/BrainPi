@@ -1,4 +1,4 @@
-class MySql {
+class MongoDb {
 
     constructor( connection,host,port,database,username,password ) {
         this.connection = connection;
@@ -14,8 +14,8 @@ class MySql {
     }
 
     verify() {
-        this.connection.toLowerCase() === 'mysql' ? true : false;
+        this.connection.toLowerCase() === 'mongodb' ? true : false;
     }
 }
 
-module.exports = MySql;
+module.exports = MongoDb;
