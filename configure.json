@@ -1,0 +1,35 @@
+{
+    "app": {
+        "name": "BrainPi",
+        "key": ""
+    },
+
+    "data": {
+        "dataNodeOne": {
+            "type": "MySQL"
+        },
+        "dataNodeTwo": {
+            "type": "CSV"
+        }
+    },
+
+    "database": {
+        "dataNodeOne": {
+            "CONNECTION": "MySql",
+            "HOST": "",
+            "PORT": "",
+            "DATABASE": "",
+            "USERNAME": "",
+            "PASSWORD": ""
+        }
+    },
+
+    "filesystem": {
+        "dataNodeTwo": {
+            "type": "public",
+            "path": "/data/dataNodeTwo/"
+        }
+    }
+
+
+}
