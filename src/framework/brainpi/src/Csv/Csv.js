@@ -1,6 +1,6 @@
 var CsvMapClass = require("./src/CsvMap");
 const fs        = require("fs");
-var init = require("../../../../config/bin/init");
+var init = require("../Config/init");
 var parse = require('csv-parse');
 
 class Csv {

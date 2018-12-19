@@ -1,4 +1,4 @@
-const init = require("../../../../config/bin/init");
+const init = require("../Config/init");
 
 class Uri {
 
@@ -25,7 +25,7 @@ class Uri {
     Input( stringPath, stringHandler ) {
         const inputPath     = this.configurationFile.app.dir,
               inputResource = stringHandler.split("@")[0],
-              inputMethod   = stringHandlder.split("@")[1];
+              inputMethod   = stringHandler.split("@")[1];
 
         // append if dir doesnt end in /   
 

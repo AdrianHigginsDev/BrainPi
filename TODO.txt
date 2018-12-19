@@ -1,0 +1,13 @@
+CSV needs to check if path/file exists before returning promise
+
+Maybe make params in select method be based on number of arguments, not one specific argument
+
+make join methods in query builder
+
+in where method, check alphanumericy to determine if we need to stringify
+
+add isnull & notnull in query builder
+
+SOMEHOW get query builder inside each DB class, so that the execute method can call that classes query method easily.
+
+build out more migration type options

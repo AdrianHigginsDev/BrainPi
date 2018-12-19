@@ -1,21 +1,22 @@
-var MongoDbClass = require("../../vendor/brainpi/src/MongoDb/MongoDb");
+var MySqlClass = require("../MySql/MySql");
 
-class MongoDbConfig {
+class MySqlConfig {
 
     constructor() {
-        this.MongoDb = null;
+        this.MySql = null;
     }
 
-    // Transale the requested Data Node into a MongoDb object
+    // Transale the requested Data Node into a MySQL object
     process( dataString , configurationFile ) {
 
         const database = eval("configurationFile.database."+dataString);
 
         if(database == null) {
-            process.exit(22);
+            console.log(`ERROR: Database For Node ${dataString} Not Found In configure.json`);
+            process.exit(1);
         }
 
-        this.MongoDb = new MongoDbClass(
+        this.MySql = new MySqlClass(
             database.connection,
             database.host,
             database.port,
@@ -24,10 +25,10 @@ class MongoDbConfig {
             database.password
         );
 
-        return this.MongoDb;
+        return this.MySql;
 
     }
 
 }
 
-module.exports = new MongoDbConfig();
+module.exports = new MySqlConfig();

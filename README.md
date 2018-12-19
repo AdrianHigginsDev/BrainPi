@@ -1,3 +1,11 @@
+## CURRENT STATUS ##
+
+-- Working on data output from databases and files.
+
+-- Next will be data inputs, which should be more of a breeze.
+
+-- After will be honing the data processing controllers.
+
 ## CONFIGURE ##
 
 Breaks down into 4 steps:

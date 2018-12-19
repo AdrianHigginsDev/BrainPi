@@ -1,8 +1,7 @@
-const components    = require("../vendor/brainpi/src/Config/index"),
-      init          = require("./bin/init"),
-      MySqlConfig   = require("./bin/MySqlConfig"),
-      CsvConfig     = require("./bin/CsvConfig"),
-      MongoDbConfig = require("./bin/MongoDbConfig");
+const init          = require("../framework/brainpi/src/Config/init"),
+      MySqlConfig   = require("../framework/brainpi/src/Config/MySqlConfig"),
+      CsvConfig     = require("../framework/brainpi/src/Config/CsvConfig"),
+      MongoDbConfig = require("../framework/brainpi/src/Config/MongoDbConfig");
 
 class Config {
 
@@ -14,7 +13,8 @@ class Config {
         var dataType = eval("this.configurationFile.data."+dataString).type;
 
         if(dataType == null) {
-            return null;
+            console.log(`ERROR: ${dataString} Not Found In configure.json`);
+            process.exit(1);
         }
 
         switch( dataType.toLowerCase() ) {
@@ -29,7 +29,8 @@ class Config {
                 return this.handleCsv( dataString );
             }
             default: {
-                return null;
+                console.log(`ERROR: ${dataType} Is An Invalid Data Type On Node ${dataString}`);
+                process.exit(1);
             }
         }
     }

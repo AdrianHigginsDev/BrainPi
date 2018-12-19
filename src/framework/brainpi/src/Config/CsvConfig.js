@@ -1,4 +1,4 @@
-var CsvClass = require("../../vendor/brainpi/src/Csv/Csv");
+var CsvClass = require("../Csv/Csv");
 
 class CsvConfig {
 
@@ -11,7 +11,8 @@ class CsvConfig {
         const filesystem = eval("configurationFile.filesystem."+dataString);
 
         if(filesystem == null) {
-            process.exit(22);
+            console.log(`ERROR: File System For Node ${dataString} Not Found in configure.json`);
+            process.exit(1);
         }
 
         this.Csv = new CsvClass(
