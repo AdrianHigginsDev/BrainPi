@@ -1,18 +1,64 @@
 #!/usr/bin/env node
 
-var migrate = require("./src/framework/brainpi/src/Migration/bin/Migration");
+var migrate      = require("./src/framework/brainpi/src/Migration/bin/Migration");
+var model        = require("./src/framework/conduct/components/Model");
+var controller   = require("./src/framework/conduct/components/Model");
+var migration    = require("./src/framework/conduct/components/Migration");
 
-var x;
-var y;
+var command;
+var param_1;
+var param_2;
 process.argv.forEach((val, index) => {
   if (index == 2) {
-    x = val;
+    command = val;
   }
   if (index == 3) {
-    y = val;
+    param_1 = val;
+  }
+  if(index == 4) {
+    param_2 = val;
   }
 });
 
-if(x = "migrate") {
-    migrate.migrate();
+
+switch(command)
+{
+  case "migrate":
+      migrate.migrate();
+      break;
+  case "create:controller":
+      if(param_1 != null) {
+        return controller(param_1);
+      } else {
+        console.log("ERROR: Missing Parameter For Controller Name!");
+        console.log("Closing Conduct...");
+        process.exit();
+      }
+  case "create:model":
+      if(param_1 != null) {
+        if(param_2 != null) {
+          return model(param_1, param_2);
+        }
+        else
+          return model(param_1, '""');
+      } else {
+        console.log("ERROR: Missing Parameter For Model Name!");
+        console.log("Closing Conduct...");
+        process.exit();
+      }
+  case "make:migration":
+      if(param_1 != null) {
+        if(param_2 != null) {
+          return migration(param_1, param_2);
+        }
+        else
+          return migration(param_1, '""');
+      } else {
+        console.log("ERROR: Missing Parameter For Migration Name!");
+        console.log("Closing Conduct...");
+        process.exit();
+      }
+  default:
+      console.log("Unknown Parameter: "+x);
+      process.exit();
 }

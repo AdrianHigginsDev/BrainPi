@@ -1,4 +1,4 @@
-const Model    = require("./Model");
+const Model = require("./Model");
 
 class User extends Model {
 
@@ -11,12 +11,6 @@ class User extends Model {
             data: 'dataNodeOne'
         }
     }
-
-    personal() {
-        var Personal = require("./Personal");
-        return this.belongsTo( Personal );
-    }
-
 
 }
 

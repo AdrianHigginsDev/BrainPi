@@ -1,6 +1,7 @@
 {
     "app": {
         "name": "BrainPi",
+        "environment": "development",
         "key": "",
         "dir": "/Users/adrianhiggins/Documents/JavaScript/NodeProjects/BrainPI/src/"
     },

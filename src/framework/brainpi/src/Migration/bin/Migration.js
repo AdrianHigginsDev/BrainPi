@@ -16,10 +16,13 @@ class Migration {
                 schema      = this.load(migration),
                 typeAndNode = this.connector(migration);
 
+
             switch(typeAndNode[0]) {
                 case "MySQL":
                     config.load(typeAndNode[1]).query(schema).then(results => {
                         console.log(results);
+                        console.log("Migrations Made!");
+                        process.exit();
                     });
                     break;
 
@@ -28,8 +31,7 @@ class Migration {
             }
         })
 
-        console.log("Migrations Made!");
-        process.exit();
+
     }
 
     load(migrator) {
@@ -108,7 +110,10 @@ class Migration {
             }
 
             if(schema[x]['primary'] != null && schema[x]['primary']) {
-                Query += ` PRIMARY KEY`;
+                if(Query.includes("PRIMARY KEY")) {
+                    throw new Error(`Query May Not Include More Than One Primary Key!`);
+                } else
+                    Query += ` PRIMARY KEY`;
             }
 
             if(schema[x]['unique'] != null && schema[x]['unique']) {
@@ -117,6 +122,14 @@ class Migration {
 
             if(schema[x]['default'] != null) {
                 Query += ` DEFAULT ${schema[x]['default']}`;
+            }
+
+            if(schema[x]['auto_increments'] != null && schema[x]['auto_increments']) {
+                Query += ` AUTO_INCREMENT`;
+            }
+
+            if(schema[x]['unsigned'] != null && schema[x]['unsigned']) {
+                Query += ` UNSIGNED`;
             }
 
             if(x != schema.length - 1)

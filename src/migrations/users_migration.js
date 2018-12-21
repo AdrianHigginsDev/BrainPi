@@ -8,14 +8,15 @@ class UsersMigraton extends Schema {
 
     /*
 
-                    name: 'id',
-                    type: 'integer',
-                    max:  11,
-                    primary: true,
-                    unique: false,
-                    nullable: false,
-                    default: null,
-                    auto_increments: true
+                    name            : 'id',
+                    type            : 'integer',
+                    max             : 11,
+                    primary         : true,
+                    unique          : false,
+                    nullable        : false,
+                    default         : null,
+                    auto_increments : true,
+                    unsigned        : true
 
     */
 

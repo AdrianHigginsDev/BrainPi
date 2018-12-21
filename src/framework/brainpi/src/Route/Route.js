@@ -12,9 +12,12 @@ class Route {
               getResource       = stringHandler.split("@")[0],
               getMethod         = stringHandler.split("@")[1];
 
-        // append if dir doesnt end in /   
+        var getHandler;
 
-        var getHandler = require(`${getPath}controllers/${getResource}`);
+        if(getPath[getPath.length - 1] == "/")
+            getHandler = require(`${getPath}controllers/${getResource}`);
+        else
+        getHandler = require(`${getPath}/controllers/${getResource}`);
 
         this.app.get(stringPath, function(req, res){
             eval(`getHandler.${getMethod}(req,res)`);
@@ -27,9 +30,12 @@ class Route {
               postResource = stringHandler.split("@")[0],
               postMethod   = stringHandler.split("@")[1];
 
-        // append if dir doesnt end in /   
-
-        var postHandler = require(`${postPath}controllers/${postResource}`);
+        var postHandler;
+        
+        if(postPath[postPath.length - 1] == "/")
+            postHandler = require(`${postPath}controllers/${postResource}`);
+        else
+            postHandler = require(`${postPath}/controllers/${postResource}`);
 
         this.app.post(stringPath, function(req, res){
             eval(`postHandler.${postMethod}(req,res)`);

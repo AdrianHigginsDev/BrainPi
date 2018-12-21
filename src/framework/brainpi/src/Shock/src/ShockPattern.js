@@ -32,12 +32,13 @@ class ShockPattern {
         
     }
 
-    belongsTo( obj ) {
+    hasOne( obj ) {
 
         var thisRef   = this.constructor.name.toLowerCase(),
             dataNode  = this.connector();
 
-        var objTableName = this.objPluralize( obj ),
+        var objTableNameSnaked = this.objSnakealize( obj ),
+            objTableName       = this.objPluralize( objTableNameSnaked ),
             classObj     = require(`../../../../../models/${obj.name}`),
             newClassObj  = new classObj();
 
@@ -51,11 +52,11 @@ class ShockPattern {
             });
         });
 
-        // returns the parent classes data
+        // returns the child classes data
 
     }
 
-    static belongsToMany( obj ) {
+    static hasMany( obj ) {
 
         var thisRef   = this.constructor.name.toLowerCase(),
             dataNode  = this.connector();
@@ -78,15 +79,15 @@ class ShockPattern {
 
     }
 
-    static hasOne( obj ) {
+    static belongsTo( obj ) {
 
-        // returns child class data
+        // returns parent class data
 
     }
 
-    static hasMany( obj ) {
+    static belongsToMany( obj ) {
 
-        // returns child classes 
+        // returns parent classes 
 
     }
 

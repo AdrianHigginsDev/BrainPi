@@ -18,8 +18,30 @@ class Shock extends ShockPattern {
         return className;
     }
 
+    objSnakealize( obj ) {
+        var classNameArray  = obj.name.split(""),
+            classNameReturn = '';
+
+        for(let i in classNameArray) {
+
+            if(classNameArray[i].toLowerCase() === classNameArray[i]) {
+                classNameReturn += classNameArray[i];
+            } else if(classNameArray[i].toLowerCase !== classNameArray[i] 
+            && i != 0) {
+                classNameReturn += `_${classNameArray[i].toLowerCase()}`;
+            } else {
+                classNameReturn += classNameArray[i].toLowerCase();
+            }
+
+        }
+
+        return classNameReturn;
+
+
+    }
+
     objPluralize( obj ) {
-        var className = obj.name.toLowerCase();
+        var className = obj;
         if(className[className.length - 1] == "s") {
             className = `${className}es`;
         } else {
