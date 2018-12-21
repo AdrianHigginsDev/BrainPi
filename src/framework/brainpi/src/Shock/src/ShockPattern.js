@@ -4,32 +4,73 @@ class ShockPattern {
 
 
     static first() {
-        var tableName = this.pluralize(),
-            dataNode  = this.connector();
+        var tableName   = this.pluralize(),
+            dataNode    = this.connector(),
+            classObj    = require(`../../../../../models/${this.name}`),
+            newClassObj = new classObj();
 
-        var x = dataNode;
-
-        return config.load(dataNode[1]).query(`SELECT * FROM ${tableName} ORDER BY id ASC LIMIT 1`);
+        return config.load(dataNode[1]).query(`SELECT * FROM ${tableName} ORDER BY id ASC LIMIT 1`).then(resultsTop => {
+            return resultsTop.map(element => {
+                newClassObj.set(element);
+                return newClassObj;
+            });
+        });
     }
 
     static last() {
-        var tableName = this.pluralize(),
-            dataNode  = this.connector();
-
-        var x = dataNode;
-
-        var classObj = require(`../../../../../models/${this.name}`);
-
-        var newClassObj = new classObj();
+        var tableName   = this.pluralize(),
+            dataNode    = this.connector(),
+            classObj    = require(`../../../../../models/${this.name}`),
+            newClassObj = new classObj();
 
         return config.load(dataNode[1]).query(`SELECT * FROM ${tableName} ORDER BY id DESC LIMIT 1`).then(resultsTop => {
             return resultsTop.map(element => {
                 newClassObj.set(element);
-                console.log(newClassObj)
                 return newClassObj;
             });
         });
         
+    }
+
+    belongsTo( obj ) {
+
+        var thisRef   = this.constructor.name.toLowerCase(),
+            dataNode  = this.connector();
+
+        var objTableName = this.objPluralize( obj ),
+            classObj     = require(`../../../../../models/${obj.name}`),
+            newClassObj  = new classObj();
+
+        const q = `SELECT * FROM ${objTableName} WHERE ${thisRef}_id = ${this.get("id")} 
+        ORDER BY id DESC LIMIT 1`;
+
+        return config.load(dataNode[1]).query(q).then(resultsTop => {
+            return resultsTop.map(element => {
+                newClassObj.set(element);
+                return newClassObj;
+            });
+        });
+
+        // returns the parent classes data
+
+    }
+
+    static belongsToMany( obj ) {
+
+        // returns array of parent classes 
+
+    }
+
+    static hasOne( obj ) {
+
+        // returns child class data
+
+    }
+
+    static hasMany( obj ) {
+
+        // returns child classes 
+
     }
 
 

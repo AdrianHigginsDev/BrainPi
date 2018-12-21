@@ -18,8 +18,43 @@ class Shock extends ShockPattern {
         return className;
     }
 
+    objPluralize( obj ) {
+        var className = obj.name.toLowerCase();
+        if(className[className.length - 1] == "s") {
+            className = `${className}es`;
+        } else {
+            className = `${className}s`;
+        }
+        return className;
+    }
+
     static connector() {
         var prop                = this.props();
+        const dataNode          = prop.data,
+              configurationData = init.readConfiguration(),
+              typeNode          = eval("configurationData.data."+dataNode);
+
+        if(typeNode == null) {
+        console.log(`ERROR: ${dataNode} Does Not Exist In configure.json!`);
+        process.exit(1);
+        }
+
+        const type = typeNode.type;
+
+        if(type == null) {
+            console.log(`ERROR: There is no TYPE defined for data node ${dataNode}!`);
+            process.exit(1);
+        }
+
+        return [type, dataNode];
+    }
+
+    connector() {
+        var className = this.constructor.name,
+            classObj  = require(`../../../../models/${className}`);
+
+        
+        var prop                = classObj.props();
         const dataNode          = prop.data,
               configurationData = init.readConfiguration(),
               typeNode          = eval("configurationData.data."+dataNode);

@@ -10,10 +10,14 @@ add isnull & notnull in query builder
 
 SOMEHOW get query builder inside each DB class, so that the execute method can call that classes query method easily.
 
-build out more migration type options\
+build out more migration type options\ AUTO_INCREMENT, UNSIGNED, etc
 
 restrict to one primary key
 
 REPLACE ALL PROCESS ERRORS WITH THROW ERRS
 
 MIGRATION FAILS FOR NO DAMN REASON?
+
+Url variables passed into functions
+
+in Shock, similar to how we make plurals, check for camel case and replace with snake case for table names

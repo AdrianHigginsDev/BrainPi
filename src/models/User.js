@@ -1,4 +1,4 @@
-const Model = require("./Model");
+const Model    = require("./Model");
 
 class User extends Model {
 
@@ -12,6 +12,10 @@ class User extends Model {
         }
     }
 
+    personal() {
+        var Personal = require("./Personal");
+        this.belongsTo( Personal );
+    }
 
 
 }

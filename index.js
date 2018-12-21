@@ -6,7 +6,6 @@ var init      = require("./src/framework/brainpi/src/Config/init");
 var config    = require("./src/config/index");
 var Route     = require("./src/framework/brainpi/src/Route/Route");
 var Bootstrap = require("./src/bootstrap/Bootstrap");
-
 const viewEngineSettings    = Bootstrap.templateEngine();
 const viewDirectorySettings = Bootstrap.viewDirectory();
 
@@ -19,7 +18,7 @@ server.listen(2200, "0.0.0.0");
 
 
 init.readConfiguration();
-// init.logConfiguration();
+// init.logConfiguration(); // Logs the configuration file in the console
 
 // config.load("dataNodeTwo").open('11311').then(contents => {
 //     console.log(contents)
@@ -45,24 +44,6 @@ init.readConfiguration();
     //                     .execute().then(result => {
     //                         console.log(result);
     //                     });
-
-
-var UserClass = require("./src/models/User");
-//  User = new User();
-
-var User; 
-UserClass.last().then(response => {
-    // User = response;
-    // console.log(response)
-})
-
-// User.then(data => {
-//     console.log(data)
-// })
-
-// User.last().then(results => {
-//     console.log(results);
-// });
 
 
 const uriMap = require("./src/route/http")(new Route(app));
