@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var migrate = require("./src/framework/brainpi/src/Migration/bin/Migration");
+
+var x;
+var y;
+process.argv.forEach((val, index) => {
+  if (index == 2) {
+    x = val;
+  }
+  if (index == 3) {
+    y = val;
+  }
+});
+
+if(x = "migrate") {
+    migrate.migrate();
+}

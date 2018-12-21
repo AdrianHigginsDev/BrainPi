@@ -10,4 +10,10 @@ add isnull & notnull in query builder
 
 SOMEHOW get query builder inside each DB class, so that the execute method can call that classes query method easily.
 
-build out more migration type options
+build out more migration type options\
+
+restrict to one primary key
+
+REPLACE ALL PROCESS ERRORS WITH THROW ERRS
+
+MIGRATION FAILS FOR NO DAMN REASON?

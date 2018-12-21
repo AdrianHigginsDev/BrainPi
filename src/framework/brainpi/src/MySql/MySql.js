@@ -43,10 +43,14 @@ class MySql extends QueryBuilder {
         }
 
         return new Promise( ( resolve, reject ) => {
+
             this.handler.query( sql, args, ( err, rows ) => {
-                if ( err )
-                    return reject( err );
-                resolve( rows );
+                
+                if ( err ) {
+                    throw err;
+                } else {
+                    resolve( rows );
+                }
             } );
         } );
         
