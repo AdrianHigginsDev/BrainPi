@@ -45,7 +45,6 @@ init.readConfiguration();
     //                         console.log(result);
     //                     });
 
-
 const uriMap = require("./src/route/http")(new Route(app));
 
 

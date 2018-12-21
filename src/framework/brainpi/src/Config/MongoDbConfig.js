@@ -12,8 +12,7 @@ class MongoDbConfig {
         const database = eval("configurationFile.database."+dataString);
 
         if(database == null) {
-            console.log(`ERROR: File System For Node ${dataString} Not Found in configure.json`);
-            process.exit(1);
+            throw new Error(`File System For Node ${dataString} Not Found in configure.json`);
         }
 
         this.MongoDb = new MongoDbClass(

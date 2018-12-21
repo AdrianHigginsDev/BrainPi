@@ -24,8 +24,7 @@ class Migration {
                     break;
 
                 default:
-                    console.log(`ERROR: ${typeAndNode[0]} is not a valid Data Type!`);
-                    process.exit(1);
+                    throw new Error(`${typeAndNode[0]} is not a valid Data Type!`);
             }
         })
 
@@ -48,15 +47,13 @@ class Migration {
               typeNode          = eval("configurationData.data."+dataNode);
                 
         if(typeNode == null) {
-            console.log(`ERROR: ${dataNode} Does Not Exist In configure.json!`);
-            process.exit(1);
+            throw new Error(`${dataNode} Does Not Exist In configure.json!`);
         }
 
         const type = typeNode.type;
 
         if(type == null) {
-            console.log(`ERROR: There is no TYPE defined for data node ${dataNode}!`);
-            process.exit(1);
+            throw new Error(`There is no TYPE defined for data node ${dataNode}!`);
         }
 
         return [type, dataNode];
@@ -74,8 +71,7 @@ class Migration {
             if(schema[x]['name'] != null) {
                 Query += ` ${schema[x]['name']} `;
             } else {
-                console.log(`ERROR: Column Needs A Name!`);
-                process.exit(1);
+                throw new Error(`Column Needs A Name!`);
             }
 
             if(schema[x]['type'] != null) {
@@ -92,14 +88,13 @@ class Migration {
                         type = "datetime";
                         break;
                     default:
-                        console.log(`ERROR: Unrecognized Type ${schema[x]['type']}`);
-                        process.exit(1);
+                        throw new Error(`Unrecognized Type ${schema[x]['type']}`);
                         break;
                 }
 
                 Query += ` ${type}`;
             } else {
-                //ERROR
+                throw new Error(`Schema Building Error!`);
             }
 
             if(schema[x]['max'] != null && typeof schema[x]['max'] == 'number') {

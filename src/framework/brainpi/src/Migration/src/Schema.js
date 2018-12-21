@@ -8,9 +8,8 @@ class Schema {
     table( table ) {
 
         if(this.tableQuery !== null) {
-            console.log(`ERROR: Schema Table Already Defined!`);
-            console.log(`You Tried To Call Table ${table} after already defining ${this.tableQuery}!`);
-            process.exit(1);
+            throw new Error(`Schema Table Already Defined! 
+            You Tried To Call Table ${table} after already defining ${this.tableQuery}!`);
         }
 
         this.tableQuery = table;
@@ -22,9 +21,7 @@ class Schema {
     column( column ) {
 
         if(column.length < 2) {
-            console.log(`ERROR: Missing Column Properties!`);
-            console.log(`Please check docs for how to declare a column!`);
-            process.exit(1);
+            throw new Error(`Missing Column Properties! Please check docs for how to declare a column!`);
         }
 
         this.columnsQuery.push(column);

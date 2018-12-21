@@ -27,8 +27,7 @@ class MySql extends QueryBuilder {
             });
 
         } else {
-            console.log("ERROR: MySQL Connection is not set to 'mysql'");
-            process.exit(1);
+            throw new Error(`MySQL Connection is not set to 'mysql'`);
         }
     }
 

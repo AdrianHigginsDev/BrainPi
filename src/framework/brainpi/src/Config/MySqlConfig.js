@@ -12,8 +12,7 @@ class MySqlConfig {
         const database = eval("configurationFile.database."+dataString);
 
         if(database == null) {
-            console.log(`ERROR: Database For Node ${dataString} Not Found In configure.json`);
-            process.exit(1);
+            throw new Error(`Database For Node ${dataString} Not Found In configure.json`);
         }
 
         this.MySql = new MySqlClass(

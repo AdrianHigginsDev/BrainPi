@@ -13,8 +13,7 @@ class Config {
         var dataType = eval("this.configurationFile.data."+dataString).type;
 
         if(dataType == null) {
-            console.log(`ERROR: ${dataString} Not Found In configure.json`);
-            process.exit(1);
+            throw new Error(`${dataString} Not Found In configure.json`)
         }
 
         switch( dataType.toLowerCase() ) {
@@ -29,8 +28,7 @@ class Config {
                 return this.handleCsv( dataString );
             }
             default: {
-                console.log(`ERROR: ${dataType} Is An Invalid Data Type On Node ${dataString}`);
-                process.exit(1);
+                throw new Error(`${dataType} Is An Invalid Data Type On Node ${dataString}`);
             }
         }
     }

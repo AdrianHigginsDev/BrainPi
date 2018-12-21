@@ -57,7 +57,24 @@ class ShockPattern {
 
     static belongsToMany( obj ) {
 
-        // returns array of parent classes 
+        var thisRef   = this.constructor.name.toLowerCase(),
+            dataNode  = this.connector();
+
+        var objTableName = this.objPluralize( obj ),
+            classObj     = require(`../../../../../models/${obj.name}`),
+            newClassObj  = new classObj();
+
+        const q = `SELECT * FROM ${objTableName} WHERE ${thisRef}_id = ${this.get("id")} 
+        ORDER BY id DESC`;
+
+        return config.load(dataNode[1]).query(q).then(resultsTop => {
+            return resultsTop.map(resultsBottom => {
+                return resultsBottom.map(element => {
+                    newClassObj.set(element);
+                    return newClassObj;
+                })
+            });
+        });
 
     }
 

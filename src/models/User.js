@@ -14,7 +14,7 @@ class User extends Model {
 
     personal() {
         var Personal = require("./Personal");
-        this.belongsTo( Personal );
+        return this.belongsTo( Personal );
     }
 
 

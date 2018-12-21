@@ -17,14 +17,11 @@ class QueryBuilder {
 
     table(tableQuery) {
         if(this.tableQuery !== null) {
-            console.log(`ERROR: QueryBuilder Table Already Defined!`);
-            console.log(`You Tried To Call Table ${tableQuery} after already defining ${this.tableQuery}!`);
-            process.exit(1);
+            throw new Error(`QueryBuilder Table Already Defined! 
+            You Tried To Call Table ${tableQuery} after already defining ${this.tableQuery}!`);
         }
         if(tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         this.tableQuery = tableQuery;
         return this;
@@ -32,14 +29,11 @@ class QueryBuilder {
 
     select(params) {
         if(this.method !== null) {
-            console.log(`ERROR: QueryBuilder Method Already Set, CANNOT change once already set!`);
-            console.log(`You Tried To Call 'SELECT' After Already Defining Query Type!`);
-            process.exit(1);
+            throw new Error(`QueryBuilder Method Already Set, CANNOT change once already set! 
+            You Tried To Call 'SELECT' After Already Defining Query Type!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         this.params = params;
         this.method = "select";
@@ -48,14 +42,11 @@ class QueryBuilder {
 
     count() {
         if(this.method !== null) {
-            console.log(`ERROR: QueryBuilder Method Already Set, CANNOT change once already set!`);
-            console.log(`You Tried To Call 'COUNT()' After Already Defining Query Type!`);
-            process.exit(1);
+            throw new Error(`QueryBuilder Method Already Set, CANNOT change once already set! 
+            You Tried To Call 'COUNT()' After Already Defining Query Type!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         this.method = "count";
         return this;
@@ -63,14 +54,11 @@ class QueryBuilder {
 
     insert(params) {
         if(this.method !== null) {
-            console.log(`ERROR: QueryBuilder Method Already Set, CANNOT change once already set!`);
-            console.log(`You Tried To Call 'INSERT' After Already Defining Query Type!`);
-            process.exit(1);
+            throw new Error(`QueryBuilder Method Already Set, CANNOT change once already set! 
+            You Tried To Call 'INSERT' After Already Defining Query Type!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         this.params = params;
         this.method = "insert";
@@ -79,14 +67,11 @@ class QueryBuilder {
 
     remove() {
         if(this.method !== null) {
-            console.log(`ERROR: QueryBuilder Method Already Set, CANNOT change once already set!`);
-            console.log(`You Tried To Call 'INSERT' After Already Defining Query Type!`);
-            process.exit(1);
+            throw new Error(`QueryBuilder Method Already Set, CANNOT change once already set! 
+            You Tried To Call "REMOVE" After Already Defining Query Type!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         this.method = "delete";
         return this;
@@ -94,14 +79,11 @@ class QueryBuilder {
 
     update(params) {
         if(this.method !== null) {
-            console.log(`ERROR: QueryBuilder Method Already Set, CANNOT change once already set!`);
-            console.log(`You Tried To Call 'INSERT' After Already Defining Query Type!`);
-            process.exit(1);
+            throw new Error(`QueryBuilder Method Already Set, CANNOT change once already set! 
+            You Tried To Call 'UPDATE' After Already Defining Query Type!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
 
         this.params = params;
@@ -111,20 +93,15 @@ class QueryBuilder {
 
     where(fieldOne, operation, fieldTwo) {
         if(this.method === null) {
-            console.log(`ERROR: Method Has Not Been Set!`);
-            console.log(`You Cannot Use WHERE clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
-            process.exit(1);
+            throw new Error(`Method Has Not Been Set! 
+            You Cannot Use WHERE clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
 
         if(fieldOne === null || operation === null || fieldTwo === null) {
-            console.log(`ERROR: NO NULL ALLOWED IN WHERE CLAUSE!`);
-            console.log(`All Params Required In Where Clause!`);
-            process.exit(1);
+            throw new Error(`NO NULL ALLOWED IN WHERE CLAUSE! All Params Required In Where Clause!`);
         }
 
         if(typeof fieldTwo != 'number') {
@@ -138,14 +115,11 @@ class QueryBuilder {
 
     limit(limit) {
         if(this.method === null) {
-            console.log(`ERROR: Method Has Not Been Set!`);
-            console.log(`You Cannot Use LIMIT without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
-            process.exit(1);
+            throw new Error(`Method Has Not Been Set! 
+            You Cannot Use LIMIT without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
 
         this.limitQuery = limit;
@@ -154,14 +128,11 @@ class QueryBuilder {
 
     offset(offset) {
         if(this.method === null) {
-            console.log(`ERROR: Method Has Not Been Set!`);
-            console.log(`You Cannot Use OFFSET clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
-            process.exit(1);
+            throw new Error(`Method Has Not Been Set! 
+            You Cannot Use OFFSET clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
 
         this.offsetQuery = offset;
@@ -170,19 +141,14 @@ class QueryBuilder {
 
     orderBy(field, ascOrDesc) {
         if(this.method === null) {
-            console.log(`ERROR: Method Has Not Been Set!`);
-            console.log(`You Cannot Use ORDERBY clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
-            process.exit(1);
+            throw new Error(`Method Has Not Been Set! 
+            You Cannot Use ORDERBY clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         if(this.orderByQuery.length > 0) {
-            console.log(`ERROR: Order Has Been Set!`);
-            console.log(`You Cannot Call Order By More Than Once!`);
-            process.exit(1);
+            throw new Error(`Order Has Been Set! You Cannot Call Order By More Than Once!`);
         }
 
         this.orderByQuery[0] = field;
@@ -193,19 +159,14 @@ class QueryBuilder {
 
     withValues(values) {
         if(this.method === null) {
-            console.log(`ERROR: Method Has Not Been Set!`);
-            console.log(`You Cannot Use ORDERBY clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
-            process.exit(1);
+            throw new Error(`Method Has Not Been Set! 
+            You Cannot Use WITHVALUES clause without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
         }
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
         if(this.values.length > 0) {
-            console.log(`ERROR: Values Already Defined!`);
-            console.log(`You Cannot Re-Define Values!`);
-            process.exit(1);
+            throw new Error(`Values Already Defined! You Cannot Re-Define Values!`);
         }
         this.values = values;
         return this;
@@ -214,23 +175,19 @@ class QueryBuilder {
     execute() {
 
         if(this.method === null) {
-            console.log(`ERROR: Method Has Not Been Set!`);
-            console.log(`You Cannot Execute Query Without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
-            process.exit(1);
+            throw new Error(`Method Has Not Been Set! 
+            You Cannot Execute Query Without A Method (e.g. 'select', 'update', 'remove', 'insert')!`);
         }
 
         if(this.tableQuery === null) {
-            console.log(`ERROR: NO TABLE DEFINED!`);
-            console.log(`You Cannot Query Build Without Defining A Table!`);
-            process.exit(1);
+            throw new Error(`NO TABLE DEFINED! You Cannot Query Build Without Defining A Table!`);
         }
 
         switch(this.method) {
             case "insert":
                 if(this.params.length !==  this.values.length) {
-                    console.log(`ERROR: VALUE LENGTH AND PARAMETER LENGTH DO NOT MATCH!`);
-                    console.log(`You passed in ${this.params.length} parameters and ${this.values.length} values!`);
-                    process.exit(1);
+                    throw new Error(`VALUE LENGTH AND PARAMETER LENGTH DO NOT MATCH! 
+                    You passed in ${this.params.length} parameters and ${this.values.length} values!`);
                 }
                 this.queryRaw = Build.buildInsert(this.tableQuery, this.params);
                 break;
@@ -241,9 +198,8 @@ class QueryBuilder {
 
             case "update":
                 if(this.params.length !==  this.values.length) {
-                    console.log(`ERROR: VALUE LENGTH AND PARAMETER LENGTH DO NOT MATCH!`);
-                    console.log(`You passed in ${this.params.length} parameters and ${this.values.length} values!`);
-                    process.exit(1);
+                    throw new Error(`VALUE LENGTH AND PARAMETER LENGTH DO NOT MATCH! 
+                    You passed in ${this.params.length} parameters and ${this.values.length} values!`);
                 }
                 this.queryRaw = Build.buildUpdate(this.tableQuery, this.params, this.clauses, this.limitQuery, this.offsetQuery, this.orderByQuery);
                 break;
@@ -257,10 +213,7 @@ class QueryBuilder {
                 break;
 
             default:
-                console.log(`ERROR: Unknown Method Set!`);
-                console.log(`Please Check Your Code!`);
-                process.exit(1);
-                break;
+                throw new Error(`Unknown Method Set! Please Check Your Code!`);
 
         }
 
@@ -273,7 +226,6 @@ class QueryBuilder {
     }
 
     query() {
-        console.log("didnt work");
     }
 }
 

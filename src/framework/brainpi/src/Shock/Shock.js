@@ -35,15 +35,13 @@ class Shock extends ShockPattern {
               typeNode          = eval("configurationData.data."+dataNode);
 
         if(typeNode == null) {
-        console.log(`ERROR: ${dataNode} Does Not Exist In configure.json!`);
-        process.exit(1);
+            throw new Error(`${dataNode} Does Not Exist In configure.json!`);
         }
 
         const type = typeNode.type;
 
         if(type == null) {
-            console.log(`ERROR: There is no TYPE defined for data node ${dataNode}!`);
-            process.exit(1);
+            throw new Error(`There is no TYPE defined for data node ${dataNode}!`);
         }
 
         return [type, dataNode];
@@ -60,15 +58,13 @@ class Shock extends ShockPattern {
               typeNode          = eval("configurationData.data."+dataNode);
 
         if(typeNode == null) {
-        console.log(`ERROR: ${dataNode} Does Not Exist In configure.json!`);
-        process.exit(1);
+            throw new Error(`${dataNode} Does Not Exist In configure.json!`);
         }
 
         const type = typeNode.type;
 
         if(type == null) {
-            console.log(`ERROR: There is no TYPE defined for data node ${dataNode}!`);
-            process.exit(1);
+            throw new Error(`There is no TYPE defined for data node ${dataNode}!`);
         }
 
         return [type, dataNode];

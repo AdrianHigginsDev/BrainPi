@@ -11,8 +11,7 @@ class CsvConfig {
         const filesystem = eval("configurationFile.filesystem."+dataString);
 
         if(filesystem == null) {
-            console.log(`ERROR: File System For Node ${dataString} Not Found in configure.json`);
-            process.exit(1);
+            throw new Error(`File System For Node ${dataString} Not Found in configure.json`);
         }
 
         this.Csv = new CsvClass(

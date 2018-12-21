@@ -71,32 +71,27 @@ class Build {
         if(orderBy != null && orderBy.length > 0) {
             console.log(orderBy);
             if(typeof orderBy[0] != 'string') {
-                console.log(`ERROR: FIRST PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`FIRST PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(typeof orderBy[1] != 'string') {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(orderBy[1] != "ASC" && orderBy[1] != "DESC") {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
             }
             this.query += ` ORDER BY ${orderBy[0]} ${orderBy[1]} `;
         }
 
         if(limit != null) {
             if(typeof limit != 'number') {
-                console.log(`ERROR: LIMIT MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`LIMIT MUST BE NUMERIC!`);
             }
             this.query += ` LIMIT ${limit} `;
         }
 
         if(offset != null) {
             if(typeof offset != 'number') {
-                console.log(`ERROR: OFFSET MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`OFFSET MUST BE NUMERIC!`);
             }
             this.query += ` OFFSET ${offset} `;
         }
@@ -107,7 +102,6 @@ class Build {
     buildUpdate(table, params, clauses, limit, offset, orderBy) {
         var x              = 0;
 
-        console.log(limit);
         // QUERY TABLE
         this.query = `UPDATE ${table} SET `;
 
@@ -133,32 +127,27 @@ class Build {
 
         if(orderBy != null && orderBy.length > 0) {
             if(typeof orderBy[0] != 'string') {
-                console.log(`ERROR: FIRST PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`FIRST PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(typeof orderBy[1] != 'string') {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(orderBy[1] != "ASC" && orderBy[1] != "DESC") {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
             }
             this.query += ` ORDER BY ${orderBy[0]} ${orderBy[1]}`;
         }
 
         if(limit != null) {
             if(typeof limit != 'number') {
-                console.log(`ERROR: LIMIT MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`LIMIT MUST BE NUMERIC!`);
             }
             this.query += ` LIMIT ${limit}`;
         }
 
         if(offset != null) {
             if(typeof offset != 'number') {
-                console.log(`ERROR: OFFSET MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`OFFSET MUST BE NUMERIC!`);
             }
             this.query += ` OFFSET ${offset}`;
         }
@@ -180,32 +169,27 @@ class Build {
         if(orderBy != null && orderBy.length > 0) {
             console.log(orderBy);
             if(typeof orderBy[0] != 'string') {
-                console.log(`ERROR: FIRST PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`FIRST PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(typeof orderBy[1] != 'string') {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(orderBy[1] != "ASC" && orderBy[1] != "DESC") {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
             }
             this.query += ` ORDER BY ${orderBy[0]} ${orderBy[1]} `;
         }
 
         if(limit != null) {
             if(typeof limit != 'number') {
-                console.log(`ERROR: LIMIT MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`LIMIT MUST BE NUMERIC!`);
             }
             this.query += ` LIMIT ${limit} `;
         }
 
         if(offset != null) {
             if(typeof offset != 'number') {
-                console.log(`ERROR: OFFSET MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`OFFSET MUST BE NUMERIC!`);
             }
             this.query += ` OFFSET ${offset} `;
         }
@@ -243,32 +227,27 @@ class Build {
         if(orderBy != null && orderBy.length > 0) {
             console.log(orderBy);
             if(typeof orderBy[0] != 'string') {
-                console.log(`ERROR: FIRST PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`FIRST PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(typeof orderBy[1] != 'string') {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE A STRING!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE A STRING!`);
             }
             if(orderBy[1] != "ASC" && orderBy[1] != "DESC") {
-                console.log(`ERROR: SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
-                process.exit(1);
+                throw new Error(`SECOND PARAM OF ORDERBY MUST BE ("ASC" OR "DESC")!`);
             }
             this.query += ` ORDER BY ${orderBy[0]} ${orderBy[1]} `;
         }
 
         if(limit != null) {
             if(typeof limit != 'number') {
-                console.log(`ERROR: LIMIT MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`LIMIT MUST BE NUMERIC!`);
             }
             this.query += ` LIMIT ${limit} `;
         }
 
         if(offset != null) {
             if(typeof offset != 'number') {
-                console.log(`ERROR: OFFSET MUST BE NUMERIC!`);
-                process.exit(1);
+                throw new Error(`OFFSET MUST BE NUMERIC!`);
             }
             this.query += ` OFFSET ${offset} `;
         }

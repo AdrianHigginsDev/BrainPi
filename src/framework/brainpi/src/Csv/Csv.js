@@ -33,10 +33,14 @@ class Csv {
 
         const path = `${appDir}${this.path}${name}.csv`;
 
-        return new Promise(function(resolve) {
-            var fileContent = fs.readFileSync(path, {encoding: 'utf8'});
-            resolve(fileContent);
-        });
+        if (fs.existsSync(path)) {
+            return new Promise(function(resolve) {
+                var fileContent = fs.readFileSync(path, {encoding: 'utf8'});
+                resolve(fileContent);
+            });
+        } else {
+            throw new Error(`${name} DOES NOT EXIST! File Specified: ${path} Does Not Exist.`)
+        }
 
     }
 }
