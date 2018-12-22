@@ -6,6 +6,10 @@ var init      = require("./src/framework/brainpi/src/Config/init");
 var config    = require("./src/config/index");
 var Route     = require("./src/framework/brainpi/src/Route/Route");
 var Bootstrap = require("./src/bootstrap/Bootstrap");
+var cron      = require("node-cron");
+var fs        = require("fs")
+
+
 const viewEngineSettings    = Bootstrap.templateEngine();
 const viewDirectorySettings = Bootstrap.viewDirectory();
 
@@ -17,7 +21,6 @@ app.set('views', path.join(__dirname, viewDirectorySettings.path));
 server.listen(2200, "0.0.0.0");
 
 
-init.readConfiguration();
 // init.logConfiguration(); // Logs the configuration file in the console
 
 // config.load("dataNodeTwo").open('11311').then(contents => {
@@ -45,6 +48,7 @@ init.readConfiguration();
     //                         console.log(result);
     //                     });
 
-const uriMap = require("./src/route/http")(new Route(app));
-
-
+if(init.readConfiguration().cron.runOnServerUp) {
+    require("./src/framework/brainpi/src/Job/bin/load")(cron, fs);
+}
+require("./src/route/http")(new Route(app));

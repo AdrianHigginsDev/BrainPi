@@ -32,7 +32,10 @@
             "ref": "public",
             "path": "/data/dataNodeTwo/"
         }
-    }
+    },
 
+    "cron": {
+        "runOnServerUp": false
+    }
 
 }

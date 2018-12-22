@@ -13,3 +13,7 @@ in Shock, similar to how we make plurals, check for camel case and replace with 
 In shock, check to make sure class exists and maybe throw err?
 
 Maybe pass the where clause through a filter to check all 3 params are valid?
+
+
+
+AD RUN CRON ON CONDUCT, BOTH "ALL" AND "SPECIFIC"
