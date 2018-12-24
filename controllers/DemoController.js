@@ -1,5 +1,5 @@
-var Controller      = require("./Controller");
-const UserClass     = require("../models/User");
+const { Controller }     = require("brainpi");
+const UserClass          = require("../models/User");
 
 class DemoController extends Controller {
 

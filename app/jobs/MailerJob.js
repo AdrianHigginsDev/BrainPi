@@ -1,4 +1,4 @@
-const Job = require("../../framework/brainpi/src/Job/Job");
+const { Job } = require("brainpi");
 
 class MailerJob extends Job {
 

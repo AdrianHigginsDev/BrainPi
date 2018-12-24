@@ -1,4 +1,4 @@
-var Schema = require("../framework/brainpi/src/Migration/src/Schema");
+const { Schema } = require("brainpi");
 
 class UsersMigraton extends Schema {
 
