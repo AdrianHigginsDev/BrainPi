@@ -5,3 +5,5 @@ node_modules
 package-lock.json
 
 secret-notes.txt
+
+.DS_Store
