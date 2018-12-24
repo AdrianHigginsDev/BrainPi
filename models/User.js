@@ -4,11 +4,14 @@ class User extends Model {
 
     constructor() {
         super();
+        this.id    = null;
+        this.name  = null;
+        this.email = null;
     }
 
     static props() {
         return {
-            data: 'dataNodeOne'
+            data: 'mysql_example'
         }
     }
 

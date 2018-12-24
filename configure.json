@@ -7,16 +7,16 @@
     },
 
     "data": {
-        "dataNodeOne": {
+        "mysql_example": {
             "type": "MySQL"
         },
-        "dataNodeTwo": {
+        "csv_example": {
             "type": "CSV"
         }
     },
 
     "database": {
-        "dataNodeOne": {
+        "mysql_example": {
             "connection": "MySql",
             "host": "127.0.0.1",
             "port": "3306",
@@ -27,7 +27,7 @@
     },
 
     "filesystem": {
-        "dataNodeTwo": {
+        "csv_example": {
             "type": "Csv",
             "ref": "public",
             "path": "/data/dataNodeTwo/"

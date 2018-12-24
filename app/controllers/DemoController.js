@@ -1,5 +1,5 @@
 const { Controller }     = require("brainpi");
-const UserClass          = require("../models/User");
+const UserClass          = require("../../models/User");
 
 class DemoController extends Controller {
 

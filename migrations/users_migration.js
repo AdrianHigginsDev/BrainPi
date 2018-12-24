@@ -23,7 +23,7 @@ class UsersMigraton extends Schema {
 
     props() {
         return {
-            data: 'dataNodeOne'
+            data: 'mysql_example'
         }
     }
 

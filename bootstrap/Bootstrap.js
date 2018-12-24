@@ -9,7 +9,19 @@ class Bootstrap {
 
     static viewDirectory() {
         return {
-            path: 'src/views'
+            path: 'views'
+        }
+    }
+
+    static modelDirectory() {
+        return {
+            path: 'models'
+        }
+    }
+
+    static controllerDirectory() {
+        return {
+            path: 'app/controllers'
         }
     }
 
