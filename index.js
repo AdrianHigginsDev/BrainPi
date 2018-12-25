@@ -11,6 +11,7 @@ var fs                        = require("fs")
 //// Getting User Set Setting ////
 const viewEngineSettings    = Bootstrap.templateEngine();
 const viewDirectorySettings = Bootstrap.viewDirectory();
+const routeDirectoryHttp    = Bootstrap.routesDirectoryHttp();
 
 //// Turn On Specified View Engine, If Using One ////
 if(viewEngineSettings.usingEngine) {
@@ -29,7 +30,7 @@ if(Init.readConfiguration().cron.runOnServerUp) {
 }
 
 //// Register Routes ////
-require("./route/http")(new Route(app));
+require(`./${routeDirectoryHttp.path}`)(new Route(app));
 
 
 
@@ -42,9 +43,9 @@ require("./route/http")(new Route(app));
 
 // Init.logConfiguration(); // Logs the configuration file in the console
 
-// config.load("csv_example").open('11311').then(contents => {
-//     console.log(contents)
-// });
+Config.load("csv_example").open('11311').then(contents => {
+    console.log(contents)
+});
 
 // Config.load("mysql_example").query("Select * from users where ID = ?", 2).then(results => {
 //     console.log(results);

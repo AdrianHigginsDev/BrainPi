@@ -25,6 +25,12 @@ class Bootstrap {
         }
     }
 
+    static routesDirectoryHttp() {
+        return {
+            path: 'routes/http'
+        }
+    }
+
 }
 
 module.exports = Bootstrap;
