@@ -10,7 +10,7 @@ class User extends Model {
         this.created_at = null;
     }
 
-    static fields() {
+    fields() {
         return {
             id: "id",
             name: "string",

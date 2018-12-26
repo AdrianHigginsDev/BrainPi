@@ -43,13 +43,21 @@ require(`./${routeDirectoryHttp.path}`)(new Route(app));
 
 // Init.logConfiguration(); // Logs the configuration file in the console
 
-Config.load("csv_example").open('11311').then(contents => {
-    console.log(contents)
-});
+// Config.load("csv_example").open('11311').then(contents => {
+//     console.log(contents)
+// });
 
 // Config.load("mysql_example").query("Select * from users where ID = ?", 2).then(results => {
 //     console.log(results);
 // })
+
+const UserClass = require("./models/User");
+
+var User;
+
+UserClass.first().then(data => {
+    User = data[0];
+})
 
 
 // config.load("mysql_example")

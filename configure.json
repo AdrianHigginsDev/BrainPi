@@ -30,7 +30,7 @@
         "csv_example": {
             "type": "Csv",
             "ref": "public",
-            "path": "/data/dataNodeTwo/"
+            "path": "/data/csv_example/"
         }
     },
 
