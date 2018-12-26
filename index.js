@@ -53,12 +53,40 @@ require(`./${routeDirectoryHttp.path}`)(new Route(app));
 
 const UserClass = require("./models/User");
 
+
+const PersonalInformationClass = require("./models/PersonalInformation");
+
+var PersonalInformation;
+
 var User;
 
-UserClass.first().then(data => {
-    User = data[0];
-})
+// Grabs the Last User in the Database
+// UserClass.last().then(data => {
+//     User = data[0];
 
+//     // Grabs PI Related to User
+//     User.infos().then(data => {
+//         PersonalInformation = data[0];
+
+//         // Grabs user related to PI
+//         PersonalInformation.user().then(data => {
+//             console.log(data[0]);
+//         })
+
+        /*
+            infos() method calls this.hasOne(PersonalInformation)
+
+            Which returns the personal_informations field that is linked to the users field
+        */
+//     })
+// })
+
+
+// PersonalInformationClass.first().then(data => {
+//     PersonalInformation = data[0];
+    
+//     PersonalInformation.users();
+// })
 
 // config.load("mysql_example")
 //     .table("Users")

@@ -27,3 +27,6 @@ Make middleware
 
 ALSO, FIGURE OUT MORE WITH THE NODE ENV PRODUCTION STUFF
 
+Considering making the ORM more simplistic.  Make models have no fields or specifications, camel case any resulting fields and 
+build the props from the db.  Need to work more with other DBs before consideration.
+

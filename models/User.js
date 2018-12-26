@@ -1,5 +1,7 @@
 const { Model } = require("brainpi");
 
+const PersonalInformation = require("./PersonalInformation");
+
 class User extends Model {
 
     constructor() {
@@ -23,6 +25,10 @@ class User extends Model {
         return {
             data: 'mysql_example'
         }
+    }
+
+    infos() {
+        return this.hasOne(PersonalInformation)
     }
 
 }
