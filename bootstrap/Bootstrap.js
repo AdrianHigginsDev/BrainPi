@@ -31,6 +31,30 @@ class Bootstrap {
         }
     }
 
+    static routesDirectoryApi() {
+        return {
+            path: 'routes/api'
+        }
+    }
+
+    static migrationsDirectory() {
+        return {
+            path: 'migrations'
+        }
+    }
+
+    static storageDirectory() {
+        return {
+            path: 'storage'
+        }
+    }
+
+    static jobDirectory() {
+        return {
+            path: 'app/jobs'
+        }
+    }
+
 }
 
 module.exports = Bootstrap;

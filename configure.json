@@ -1,41 +1,55 @@
 {
-    "app": {
-        "name": "BrainPi",
-        "environment": "development",
-        "key": "",
-        "dir": "/Users/adrianhiggins/Documents/JavaScript/NodeProjects/BrainPI/"
+  "app": {
+    "name": "BrainPi",
+    "environment": "development",
+    "key": "",
+    "dir": "/Users/adrianhiggins/Documents/JavaScript/NodeProjects/BrainPI/"
+  },
+  "data": {
+    "mysql_example": {
+      "type": "MySQL"
     },
-
-    "data": {
-        "mysql_example": {
-            "type": "MySQL"
-        },
-        "csv_example": {
-            "type": "CSV"
-        }
+    "mongo_example": {
+      "type": "MongoDB"
     },
-
-    "database": {
-        "mysql_example": {
-            "connection": "MySql",
-            "host": "127.0.0.1",
-            "port": "3306",
-            "database": "node",
-            "username": "root",
-            "password": ""
-        }
+    "csv_example": {
+      "type": "CSV"
     },
-
-    "filesystem": {
-        "csv_example": {
-            "type": "Csv",
-            "ref": "public",
-            "path": "/data/csv_example/"
-        }
-    },
-
-    "cron": {
-        "runOnServerUp": false
+    "public_file_system": {
+      "type": "files"
     }
-
+  },
+  "database": {
+    "mysql_example": {
+      "connection": "MySql",
+      "host": "127.0.0.1",
+      "port": "3306",
+      "database": "node",
+      "username": "root",
+      "password": ""
+    },
+    "mongo_example": {
+      "connection": "MongoDB",
+      "host": "127.0.0.1",
+      "port": "3309",
+      "database": "mongo_example",
+      "username": "root",
+      "password": ""
+    }
+  },
+  "filesystem": {
+    "csv_example": {
+      "type": "Csv",
+      "ref": "public",
+      "path": "/data/csv_example/"
+    },
+    "public_file_system": {
+      "type": "files",
+      "ref": "public",
+      "path": "/public/files"
+    }
+  },
+  "cron": {
+    "runOnServerUp": false
+  }
 }

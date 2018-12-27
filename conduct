@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const { Migrate, ModelComponent, ControllerComponent, MigrationComponent } = require("brainpi");
+const { Migrate, ModelComponent, ControllerComponent,
+  MigrationComponent, JobLoader, Structure } = require("brainpi");
 
 var command;
 var param_1;
@@ -55,6 +56,37 @@ switch(command)
         console.log("Closing Conduct...");
         process.exit();
       }
+  case "cron:start": {
+    if(param_1 != null) {
+      return JobLoader.loadSingle( param_1 );
+    } else {
+      console.log("ERROR: Missing Job Name Paramerter!");
+      console.log("Closing Conduct...");
+      process.exit();
+    }
+  }
+  case "link": {
+    if(param_1 == null || param_2 == null) {
+      console.log("ERROR: Missing Required Parameter(s)!");
+      console.log("Closing Conduct...");
+      process.exit();
+    }
+
+    return Structure.link(param_1, param_2);
+
+  }
+  case "filesystem:public": {
+    if(param_1 == null) {
+      param_1 = "storage/public";
+    }
+
+    if(param_2 == null) {
+      param_2 = "public/files"
+    }
+
+    return Structure.link(param_1, param_2);
+
+  }
   default:
       console.log("Unknown Parameter: "+x);
       process.exit();

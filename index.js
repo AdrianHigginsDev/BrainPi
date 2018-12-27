@@ -1,24 +1,25 @@
-var express                   = require("express");
-var app                       = express();
-var server                    = require('http').Server(app);
+var expressClass              = require("express");
+var express                   = expressClass();
+var server                    = require('http').Server(express);
 const path                    = require('path');
-const { Config, Route, Init, 
+const { App, Route, Init, 
     JobLoader }               = require("brainpi");
 var Bootstrap                 = require("./bootstrap/Bootstrap");
 var cron                      = require("node-cron");
 var fs                        = require("fs")
 
 //// Getting User Set Setting ////
-const viewEngineSettings    = Bootstrap.templateEngine();
-const viewDirectorySettings = Bootstrap.viewDirectory();
-const routeDirectoryHttp    = Bootstrap.routesDirectoryHttp();
+const viewEngineSettings       = Bootstrap.templateEngine();
+const viewDirectorySettings    = Bootstrap.viewDirectory();
+const routeDirectoryHttp       = Bootstrap.routesDirectoryHttp();
+const routeDirectoryApi        = Bootstrap.routesDirectoryApi();
 
 //// Turn On Specified View Engine, If Using One ////
 if(viewEngineSettings.usingEngine) {
-    app.set('view engine', viewEngineSettings.name);
+    express.set('view engine', viewEngineSettings.name);
 }
 //// Set Path To Response Views ////
-app.set('views', path.join(__dirname, viewDirectorySettings.path));
+express.set('views', path.join(__dirname, viewDirectorySettings.path));
 
 
 //// Launch Server ////
@@ -30,7 +31,9 @@ if(Init.readConfiguration().cron.runOnServerUp) {
 }
 
 //// Register Routes ////
-require(`./${routeDirectoryHttp.path}`)(new Route(app));
+require(`./${routeDirectoryHttp.path}`)(new Route(express));
+
+require(`./${routeDirectoryApi.path}`)(new Route(express));
 
 
 
@@ -43,11 +46,11 @@ require(`./${routeDirectoryHttp.path}`)(new Route(app));
 
 // Init.logConfiguration(); // Logs the configuration file in the console
 
-// Config.load("csv_example").open('11311').then(contents => {
-//     console.log(contents)
-// });
+App.load("csv_example").open('11311').then(contents => {
+    console.log(contents)
+});
 
-// Config.load("mysql_example").query("Select * from users where ID = ?", 2).then(results => {
+// App.load("mysql_example").query("Select * from users where ID = ?", 2).then(results => {
 //     console.log(results);
 // })
 
@@ -88,7 +91,7 @@ var User;
 //     PersonalInformation.users();
 // })
 
-// config.load("mysql_example")
+// App.load("mysql_example")
 //     .table("Users")
 //     .insert(["name", "email", "password"])
 //     .withValues(["Aaaa", "aaaaahiggins@email.com", "123456"])
@@ -96,7 +99,12 @@ var User;
 //         console.log(result);
 //     });
 
-// Config.load("mysql_example")
+// App.load("mongo_example")
+//     .collection("seacreatures")
+//     .findOne("crab")
+//     .execute();
+
+// App.load("mysql_example")
 //         .table("Users")
 //         .select(["name", "email", "password"])
 //         .where("Name", "=", "Adrian")
