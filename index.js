@@ -54,14 +54,27 @@ App.load("csv_example").open('11311').then(contents => {
 //     console.log(results);
 // })
 
-const UserClass = require("./models/User");
+const { Mail } = require("brainpi");
+
+// Mail.config("amhigs98@gmail.com", "amhigs98@gmail.com", "Test", "Testing out mail").send();
 
 
-const PersonalInformationClass = require("./models/PersonalInformation");
+const { EventLoader, Event } = require("brainpi");
 
-var PersonalInformation;
+EventLoader.load();
 
-var User;
+const Ev = new Event();
+
+Ev.emit("Test")
+
+// const UserClass = require("./models/User");
+
+
+// const PersonalInformationClass = require("./models/PersonalInformation");
+
+// var PersonalInformation;
+
+// var User;
 
 // Grabs the Last User in the Database
 // UserClass.last().then(data => {
@@ -99,10 +112,11 @@ var User;
 //         console.log(result);
 //     });
 
-// App.load("mongo_example")
-//     .collection("seacreatures")
-//     .findOne("crab")
-//     .execute();
+// App.load("mongo_example").then(db => {
+//     db.collection("seacreatures").findOne({}, result => {
+//         console.log(result)
+//     }).catch(function (err) {})
+// })
 
 // App.load("mysql_example")
 //         .table("Users")

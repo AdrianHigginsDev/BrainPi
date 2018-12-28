@@ -14,10 +14,6 @@ In shock, check to make sure class exists and maybe throw err?
 
 Maybe pass the where clause through a filter to check all 3 params are valid?
 
-
-
-AD RUN CRON ON CONDUCT, BOTH "ALL" AND "SPECIFIC"
-
 Make ErrorLog class method to log errors as they happen.
 -> ErrorLog constructs with a string path, change to a config string path
 
@@ -29,5 +25,3 @@ ALSO, FIGURE OUT MORE WITH THE NODE ENV PRODUCTION STUFF
 
 Considering making the ORM more simplistic.  Make models have no fields or specifications, camel case any resulting fields and 
 build the props from the db.  Need to work more with other DBs before consideration.
-
-make a back() method

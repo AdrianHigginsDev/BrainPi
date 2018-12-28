@@ -58,7 +58,12 @@ switch(command)
       }
   case "cron:start": {
     if(param_1 != null) {
-      return JobLoader.loadSingle( param_1 );
+      if(param_1.toLowerCase() == "all") {
+        return JobLoader.loadAll();
+      } else {
+        return JobLoader.loadSingle( param_1 );
+      }
+      
     } else {
       console.log("ERROR: Missing Job Name Paramerter!");
       console.log("Closing Conduct...");

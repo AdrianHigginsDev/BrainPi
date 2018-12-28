@@ -3,7 +3,7 @@
     "name": "BrainPi",
     "environment": "development",
     "key": "",
-    "dir": "/Users/adrianhiggins/Documents/JavaScript/NodeProjects/BrainPI/"
+    "dir": "/Users/adrianhiggins/Documents/JavaScript/NodeProjects/BrainPI"
   },
   "data": {
     "mysql_example": {
@@ -30,8 +30,7 @@
     },
     "mongo_example": {
       "connection": "MongoDB",
-      "host": "127.0.0.1",
-      "port": "3309",
+      "url": "mongodb://localhost:27017/",
       "database": "mongo_example",
       "username": "root",
       "password": ""
@@ -41,13 +40,18 @@
     "csv_example": {
       "type": "Csv",
       "ref": "public",
-      "path": "/data/csv_example/"
+      "path": "data/csv_example/"
     },
     "public_file_system": {
       "type": "files",
       "ref": "public",
-      "path": "/public/files"
+      "path": "public/files"
     }
+  },
+  "mail": {
+    "service":  "your-email-service",
+    "username": "your-email",
+    "password": "your-pass"
   },
   "cron": {
     "runOnServerUp": false
