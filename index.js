@@ -20,6 +20,7 @@ if(viewEngineSettings.usingEngine) {
 }
 //// Set Path To Response Views ////
 express.set('views', path.join(__dirname, viewDirectorySettings.path));
+express.use(expressClass.static(__dirname + '/public'));
 
 
 //// Launch Server ////
@@ -57,15 +58,6 @@ App.load("csv_example").open('11311').then(contents => {
 const { Mail } = require("brainpi");
 
 // Mail.config("amhigs98@gmail.com", "amhigs98@gmail.com", "Test", "Testing out mail").send();
-
-
-const { EventLoader, Event } = require("brainpi");
-
-EventLoader.load();
-
-const Ev = new Event();
-
-Ev.emit("Test")
 
 // const UserClass = require("./models/User");
 

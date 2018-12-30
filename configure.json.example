@@ -1,0 +1,34 @@
+{
+  "app": {
+    "name": "BrainPi",
+    "environment": "development",
+    "key": "",
+    "dir": "/project/directory"
+  },
+  "data": {
+    "mysql_example": {
+      "type": "MySQL"
+    }
+  },
+  "database": {
+    "mysql_example": {
+      "connection": "MySql",
+      "host": "127.0.0.1",
+      "port": "3306",
+      "database": "node",
+      "username": "root",
+      "password": ""
+    }
+  },
+  "filesystem": {
+
+  },
+  "mail": {
+    "service": "your-email-service",
+    "username": "your-email",
+    "password": "your-pass"
+  },
+  "cron": {
+    "runOnServerUp": false
+  }
+}

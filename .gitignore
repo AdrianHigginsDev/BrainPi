@@ -1,11 +1,16 @@
+# always
 node_modules
 
+# Computer/IDE 
 .vscode
-
-package-lock.json
-
-secret-notes.txt
-
 .DS_Store
+
+# Private
+package-lock.json
+configure.json
+
+# My notes
+secret-notes.txt
+TODO.txt
 
 Ignore
