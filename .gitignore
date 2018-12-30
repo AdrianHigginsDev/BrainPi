@@ -13,4 +13,14 @@ configure.json
 secret-notes.txt
 TODO.txt
 
+# My testing
+data/csv_example
+migrations/users_migration.js
+models/PersonalInformation.js
+models/User.js
+app/jobs/MailerJob.js
+app/events/TestEvent.js
+app/controllers/DemoController.js
+views/index.pug
+
 Ignore
