@@ -61,7 +61,17 @@ npm install
 
 What this command is going to do is read all the required **NPM packages** for **BrainPI** to work, and install them into your project. Including the **BrainPI NPM Package**, which you don't need to worry about now.
 
-From here, you should have everything you need to get started configuring your **BrainPI** Project!
+* * *
+
+From here, we will set the application directory in our configuration.  Without this, the app will not run.
+
+To do so, run the following:
+
+```
+node conduct quick:configure
+```
+
+What this command does is set the app->dir property in configure.json.  If your configuration file is still titled **configure.json.example**, it will automatically change it for you.
 
 \
 \
