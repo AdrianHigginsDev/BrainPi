@@ -8,7 +8,10 @@
   "data": {
     "mysql_example": {
       "type": "MySQL"
-    }
+    },
+    "csv_example": {
+      "type": "CSV"
+    },
   },
   "database": {
     "mysql_example": {
@@ -21,7 +24,11 @@
     }
   },
   "filesystem": {
-
+    "csv_example": {
+      "type": "Csv",
+      "ref": "public",
+      "path": "data/csv_example/"
+    },
   },
   "mail": {
     "service": "your-email-service",
