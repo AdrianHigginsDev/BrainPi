@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-const { Migrate, ModelComponent, ControllerComponent,
-  MigrationComponent, JobLoader, Structure } = require("brainpi");
-
 var command;
 var param_1;
 var param_2;
@@ -18,81 +15,127 @@ process.argv.forEach((val, index) => {
   }
 });
 
+if(command != "quick:configure") {
 
-switch(command)
-{
-  case "migrate":
-      Migrate.migrate();
-      break;
-  case "create:controller":
-      if(param_1 != null) {
-        return ControllerComponent(param_1);
-      } else {
-        console.log("ERROR: Missing Parameter For Controller Name!");
-        console.log("Closing Conduct...");
-        process.exit();
-      }
-  case "create:model":
-      if(param_1 != null) {
-        if(param_2 != null) {
-          return ModelComponent(param_1, param_2);
+
+  const { Migrate, ModelComponent, ControllerComponent,
+    MigrationComponent, JobLoader, Structure } = require("brainpi");
+
+    switch(command)
+    {
+      case "migrate":
+          Migrate.migrate();
+          break;
+      case "create:controller":
+          if(param_1 != null) {
+            return ControllerComponent(param_1);
+          } else {
+            console.log("ERROR: Missing Parameter For Controller Name!");
+            console.log("Closing Conduct...");
+            process.exit();
+          }
+      case "create:model":
+          if(param_1 != null) {
+            if(param_2 != null) {
+              return ModelComponent(param_1, param_2);
+            }
+            else
+              return ModelComponent(param_1, '""');
+          } else {
+            console.log("ERROR: Missing Parameter For Model Name!");
+            console.log("Closing Conduct...");
+            process.exit();
+          }
+      case "make:migration":
+          if(param_1 != null) {
+            if(param_2 != null) {
+              return MigrationComponent(param_1, param_2);
+            }
+            else
+              return MigrationComponent(param_1, '""');
+          } else {
+            console.log("ERROR: Missing Parameter For Migration Name!");
+            console.log("Closing Conduct...");
+            process.exit();
+          }
+      case "cron:start": {
+        if(param_1 != null) {
+          if(param_1.toLowerCase() == "all") {
+            return JobLoader.loadAll();
+          } else {
+            return JobLoader.loadSingle( param_1 );
+          }
+          
+        } else {
+          console.log("ERROR: Missing Job Name Paramerter!");
+          console.log("Closing Conduct...");
+          process.exit();
         }
-        else
-          return ModelComponent(param_1, '""');
-      } else {
-        console.log("ERROR: Missing Parameter For Model Name!");
-        console.log("Closing Conduct...");
-        process.exit();
       }
-  case "make:migration":
-      if(param_1 != null) {
-        if(param_2 != null) {
-          return MigrationComponent(param_1, param_2);
+      case "link": {
+        if(param_1 == null || param_2 == null) {
+          console.log("ERROR: Missing Required Parameter(s)!");
+          console.log("Closing Conduct...");
+          process.exit();
         }
-        else
-          return MigrationComponent(param_1, '""');
-      } else {
-        console.log("ERROR: Missing Parameter For Migration Name!");
+
+        return Structure.link(param_1, param_2);
+
+      }
+      case "filesystem:public": {
+        if(param_1 == null) {
+          param_1 = "storage/public";
+        }
+
+        if(param_2 == null) {
+          param_2 = "public/files"
+        }
+
+        return Structure.link(param_1, param_2);
+
+      }
+      default:
+          console.log("Unknown Parameter: "+x);
+          process.exit();
+  }
+
+
+
+
+} else {
+
+  const fs = require("fs");
+
+  if(!fs.existsSync("configure.json") && fs.existsSync("configure.json.example")) {
+    fs.rename('configure.json.example', 'configure.json', function(err) {
+      if ( err ) {
+        console.log('ERROR: ' + err);
         console.log("Closing Conduct...");
         process.exit();
       }
-  case "cron:start": {
-    if(param_1 != null) {
-      if(param_1.toLowerCase() == "all") {
-        return JobLoader.loadAll();
+    });
+  } else if (!fs.existsSync("configure.json") && !fs.existsSync("configure.json.example")) {
+    console.log("ERROR: no 'configure.json' or 'configure.json.example' file found!  Please re-clone your project.")
+    console.log("Closing Conduct...");
+    process.exit();
+  }
+
+  fs.readFile("configure.json", 'utf8', function readFileCallback(err, data){
+      if (err){
+          console.log(`ERROR: ${err}`);
+          console.log("Closing Conduct...");
+          process.exit();
       } else {
-        return JobLoader.loadSingle( param_1 );
-      }
-      
-    } else {
-      console.log("ERROR: Missing Job Name Paramerter!");
-      console.log("Closing Conduct...");
-      process.exit();
-    }
-  }
-  case "link": {
-    if(param_1 == null || param_2 == null) {
-      console.log("ERROR: Missing Required Parameter(s)!");
-      console.log("Closing Conduct...");
-      process.exit();
-    }
+          var obj = JSON.parse(data); //now it's an object
 
-    return Structure.link(param_1, param_2);
+          obj.app.dir = __dirname;
 
-  }
-  case "filesystem:public": {
-    if(param_1 == null) {
-      param_1 = "storage/public";
-    }
+          var json = JSON.stringify(obj, null, 2); //convert it back to json
+          fs.writeFile("configure.json", json, 'utf8', function(err) {
+              if(err) {
+                  throw err;
+              }
+          }); // write it back 
+  }});
 
-    if(param_2 == null) {
-      param_2 = "public/files"
-    }
-
-    return Structure.link(param_1, param_2);
-
-  }
-  default:
-      console.log("Unknown Parameter: "+x);
-      process.exit();
 }
