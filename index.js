@@ -24,7 +24,7 @@ express.use(expressClass.static(__dirname + '/public'));
 
 
 //// Launch Server ////
-server.listen(2200, "0.0.0.0");
+server.listen(8000, "0.0.0.0");
 
 //// Turn On Cron Jobs If Set To True ////
 if(Init.readConfiguration().cron.runOnServerUp) {
@@ -47,15 +47,15 @@ require(`./${routeDirectoryApi.path}`)(new Route(express));
 
 // Init.logConfiguration(); // Logs the configuration file in the console
 
-App.load("csv_example").open('11311').then(contents => {
-    console.log(contents)
-});
+// App.load("csv_example").open('11311').then(contents => {
+//     console.log(contents)
+// });
 
 // App.load("mysql_example").query("Select * from users where ID = ?", 2).then(results => {
 //     console.log(results);
 // })
 
-const { Mail } = require("brainpi");
+// const { Mail } = require("brainpi");
 
 // Mail.config("amhigs98@gmail.com", "amhigs98@gmail.com", "Test", "Testing out mail").send();
 
@@ -117,5 +117,24 @@ const { Mail } = require("brainpi");
 //         .execute().then(result => {
 //             console.log(result);
 //         });
+
+        // App.load("mysql_example")
+        // .table("Users")
+        // .select(["*"])
+        // .execute().then(result => {
+        //     console.log(result);
+        // });
+
+        // App.load("postgres_example")
+        // .table("testing")
+        // .insert(["id", "age", "address", "salary"])
+        // .withValues([2, 22, "2 street", "3000000"])
+        // .execute().then(result => {
+        //     console.log(result);
+        // });
+
+        // App.load("postgres_example").query("Select * from testing").then(results => {
+        //     console.log(results)
+        // })
 
 /*********** ABOVE LINES ARE FOR FEATURE TESTING PURPOSES ***********/
