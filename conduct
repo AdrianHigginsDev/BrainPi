@@ -19,7 +19,7 @@ if(command != "quick:configure") {
 
 
   const { Migrate, ModelComponent, ControllerComponent,
-    MigrationComponent, JobLoader, Structure } = require("brainpi");
+    MigrationComponent, CronJobComponent, JobLoader, Structure } = require("brainpi");
 
     switch(command)
     {
@@ -31,6 +31,14 @@ if(command != "quick:configure") {
             return ControllerComponent(param_1);
           } else {
             console.log("ERROR: Missing Parameter For Controller Name!");
+            console.log("Closing Conduct...");
+            process.exit();
+          }
+      case "create:job":
+          if(param_1 != null) {
+            return CronJobComponent(param_1);
+          } else {
+            console.log("ERROR: Missing Parameter For Job Name!");
             console.log("Closing Conduct...");
             process.exit();
           }
