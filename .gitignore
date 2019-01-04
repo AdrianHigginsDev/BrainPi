@@ -1,24 +1,23 @@
-# always
+# This next line is like lyposuction for Git
 node_modules
 
-# Computer/IDE 
+# Computer/IDE/Nuisance
 .vscode
 .DS_Store
 
-# Private
+# Private, of course.
 package-lock.json
 configure.json
 
-# My notes
+# My Secrets :) ...
+HighLevelToDo.txt
 secret-notes.txt
 TODO.txt
 
-# My testing
+# I promise I will delete this.
 data/csv_example
 migrations/users_migration.js
 models/PersonalInformation.js
 models/User.js
 app/events/TestEvent.js
 app/controllers/DemoController.js
-
-Ignore

@@ -13,6 +13,12 @@ class Bootstrap {
         }
     }
 
+    static errorViewDirectory() {
+        return {
+            path: 'views/errors'
+        }
+    }
+
     static modelDirectory() {
         return {
             path: 'models'

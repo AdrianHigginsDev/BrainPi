@@ -176,3 +176,26 @@ Generally, your controllers will do much more than this. They are where you shou
 So in conclusion, we learned how to create a **Route** and a **Controller** that returns our **pug** file with a variable!
 
 Moving forward, you should learn how to interact with a database in your **Controller** to use real data in your pug files, write and interact with **API's**, and more!
+
+## Deployment
+
+We will be releasing a guide on how to set up an Nginx System to deploy this application
+
+## Built With
+
+* [Node.js](https://nodejs.org/) - JavaScript Run Time Built On V8
+* [NPM](https://www.npmjs.com/) - For Package Management
+
+## Authors
+
+* **Adrian Higgins** - *Creator Of BrainPI* - [ahiggins98](https://github.com/ahiggins98)
+
+See also the list of [contributors](https://github.com/ahiggins98/brainpi/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+* Hat tip to all the authors who's projects helped make this what it is
