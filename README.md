@@ -153,7 +153,9 @@ Response will be what we use to return our views and variables.
 
 Inside the **index** method, write the following:
 
+```javascript
 response.render('hello-world', {name:'your-name-here'} );
+```
 
 * * *
 
