@@ -7,7 +7,7 @@
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/AHiggins98/BrainPi.git"
+		"url": "https://github.com/AdrianHigginsDev/BrainPi.git"
 	},
 	"scripts": {
 		"start": "node index.js"
