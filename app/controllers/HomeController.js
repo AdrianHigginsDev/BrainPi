@@ -7,7 +7,7 @@ class HomeController extends Controller
         super();
     }
 
-    Index(request, response)
+    index(request, response)
     {
         // TO-DO
     }

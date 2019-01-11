@@ -92,6 +92,12 @@ Inside your views directory, create a new file and call it **hello-world.pug**. 
 Inside this file, write the following:
 
 ```pug
+<h1>Hello World From #{name}!</h1>
+```
+
+OR
+
+```pug
 h1 Hello World From #{name}!
 ```
 
@@ -99,7 +105,7 @@ h1 Hello World From #{name}!
 
 The first two things you'll notice are the **h1** and the **#{}**.
 
-In **pug**, you only need to write the tag you're using, and it will compile to the proper **HTML**. So **h1** will compile into **<h1> </h1>**.
+In **pug**, you only need to write the tag you're using, and it will compile to the proper **HTML**. So **h1** will compile into **<h1> </h1>**. **HOWEVER**, you may also write regular HTML Syntax!
 
 Using **Variables** from our **BrainPI** application can be done with the **#{}** tags.
 
@@ -169,7 +175,7 @@ The **name** should be set to your name, and then our **pug** file will display 
 
 * * *
 
-To try it out, head to <host>/hello-world, and you should see **Hello World From your-name!**
+To try it out, head to &lt;host&gt;/hello-world, and you should see **Hello World From your-name!**
 
 Generally, your controllers will do much more than this. They are where you should handle different exchanges with the database, load data to your view, and so much more.
 
@@ -190,9 +196,9 @@ We will be releasing a guide on how to set up an Nginx System to deploy this app
 
 ## Authors
 
-* **Adrian Higgins** - *Creator Of BrainPI* - [ahiggins98](https://github.com/ahiggins98)
+* **Adrian Higgins** - *Creator Of BrainPI* - [AdrianHigginsDev](https://github.com/AdrianHigginsDev)
 
-See also the list of [contributors](https://github.com/ahiggins98/brainpi/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/AdrianHigginsDev/brainpi/contributors) who participated in this project.
 
 ## License
 
