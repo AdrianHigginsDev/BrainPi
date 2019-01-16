@@ -1,34 +1,46 @@
-const { App, Route, Init, 
-    JobLoader, ErrorLog }      = require("brainpi");
-var expressClass               = require("express");
-var express                    = expressClass();
-var server                     = require('http').Server(express);
-const path                     = require('path');
-var Bootstrap                  = require("./bootstrap/Bootstrap");
-var cron                       = require("node-cron");
-var fs                         = require("fs");
+const { Route, Init, 
+    JobLoader, ErrorLog, 
+    Middleware }               = require("brainpi"),
+    expressClass               = require("express"),
+    express                    = expressClass(),
+    server                     = require('http').Server(express),
+    path                       = require('path'),
+    bodyParser                 = require("body-parser"),
+    Bootstrap                  = require("./bootstrap/Bootstrap"),
+    cron                       = require("node-cron"),
+    fs                         = require("fs");
                                  require('run-middleware')(express);
 
-//// Getting Bootstrap Setting ////
+/*===========================================
+  Getting Bootstrap Setting
+============================================*/
 const viewEngineSettings       = Bootstrap.templateEngine(),
       viewDirectorySettings    = Bootstrap.viewDirectory(),
       routeDirectoryHttp       = Bootstrap.routesDirectoryHttp(),
       routeDirectoryApi        = Bootstrap.routesDirectoryApi(),
+      errorDirectory           = Bootstrap.errorViewDirectory(),
       env                      = Init.readConfiguration().app.environment;
-
-
-//// Turn On Specified View Engine, If Using One ////
-if(viewEngineSettings.usingEngine) {
+/*===========================================
+  Turn On Specified View Engine, If Using One
+============================================*/
+if(viewEngineSettings.usingEngine)
     express.set('view engine', viewEngineSettings.name);
-}
-//// Set Path To Response Views ////
+/*===========================================
+  Set Path To Response Views
+============================================*/
 express.set('views', path.join(__dirname, viewDirectorySettings.path));
 express.use(expressClass.static(__dirname + '/public'));
-
-//// Launch Server ////
+express.use(bodyParser.json());
+express.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  })); 
+/*===========================================
+  Launch Our Server
+============================================*/
 server.listen(8000, "0.0.0.0");
-
-// Exception Handling On Enviroment Modes
+/*===========================================
+  Exception Handling On Enviroment Modes
+============================================*/
 process.on('uncaughtException', function(err) {
     if(env == "dev" || 
     env == "development") {
@@ -47,24 +59,23 @@ process.on('uncaughtException', function(err) {
     else {
         throw new Error(err);
     }
-    
 });
-
-//// Turn On Cron Jobs If Set To True ////
-if(Init.readConfiguration().cron.runOnServerUp) {
+/*===========================================
+  Turn On Cron Jobs If Set To True
+============================================*/
+if(Init.readConfiguration().cron.runOnServerUp)
     JobLoader.loadAll(cron, fs, Init.readConfiguration().app.dir);
-}
-
-//// Register Routes ////
-require(`./${routeDirectoryHttp.path}`)(new Route(express));
-
-require(`./${routeDirectoryApi.path}`)(new Route(express));
-
-// Static 404 handler
+/*===========================================
+  Register Routes
+============================================*/
+require(`./${routeDirectoryHttp.path}`)(new Route(express), new Middleware(express));
+require(`./${routeDirectoryApi.path}`)( new Route(express), new Middleware(express));
+/*===========================================
+  Static 404 handler
+============================================*/
 express.get("/404", function(request, response) {
-    response.sendFile(__dirname + "/"+Bootstrap.errorViewDirectory().path+"/404.html");
+    response.render(`${errorDirectory.path}/404`);
 })
-
 
 /********* FOLLOWING LINES ARE FOR FEATURE TESTING PURPOSES *********/
 
@@ -72,7 +83,12 @@ express.get("/404", function(request, response) {
 
 // ErrorLog.write("Testing Error");
 
+// var cool = File.findOrFail("storage/test/public/crab.png");
 
+// console.log(cool)
+
+// var x = App.load("files_example").findOrFail("/public/crab.png");
+// console.log(x)
 
 // Init.logConfiguration(); // Logs the configuration file in the console
 
@@ -98,7 +114,7 @@ express.get("/404", function(request, response) {
 
 // UserClass.first().then(data => {
 //     User = data;
-//     console.log(User)
+//     User.validate();
 // });
 
 // UserClass.findById(4).then(data => {

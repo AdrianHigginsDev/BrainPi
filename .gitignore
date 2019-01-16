@@ -1,4 +1,3 @@
-# This next line is like lyposuction for Git
 node_modules
 
 # Computer/IDE/Nuisance
@@ -8,16 +7,3 @@ node_modules
 # Private, of course.
 package-lock.json
 configure.json
-
-# My Secrets :) ...
-HighLevelToDo.txt
-secret-notes.txt
-TODO.txt
-
-# I promise I will delete this.
-data/csv_example
-migrations/users_migration.js
-models/PersonalInformation.js
-models/User.js
-app/events/TestEvent.js
-app/controllers/DemoController.js

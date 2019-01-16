@@ -7,9 +7,12 @@ class HomeController extends Controller
         super();
     }
 
-    index(request, response)
-    {
-        // TO-DO
+    index(request, response) {
+        response.render('index')
+    }
+
+    home(request, response) {
+        response.render('home/home');
     }
 
 }

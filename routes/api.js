@@ -1,16 +1,8 @@
-module.exports = function (Route) {
+module.exports = function (Route, Middleware) {
 
-    /************************
-
-    Routing For Your API's
-
-    Use For External Projects
-
-    Including Mobile Apps 
-    
-    or Desktop Apps
-
-    **************************/
+    /*=================================
+       API Routing File
+    ==================================*/  
     
     
 }
