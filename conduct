@@ -36,7 +36,6 @@ process.argv.forEach((val, index) => {
 
 if(command != "quick:configure" && command != "key:generate") {
 
-
   const { Migrate, ModelComponent, ControllerComponent, MiddlewareComponent,
     MigrationComponent, CronJobComponent, JobLoader, Structure } = require("brainpi");
 
@@ -130,21 +129,20 @@ if(command != "quick:configure" && command != "key:generate") {
 
       }
       default:
-          console.log("Unknown Parameter: "+x);
+          console.log("Unknown Parameter: "+command);
           process.exit();
   }
 
 
 
 
-} else {
+} else if(command == "quick:configure") {
 
   /*==========================================
     Sets Directory Path In Our configure.json
   ===========================================*/
-
-  const fs           = require("fs"),
-        {Encryption} = require("brainpi");
+  const fs = require("fs");
+        
 
   if(!fs.existsSync("configure.json") && fs.existsSync("configure.json.example")) {
     fs.rename('configure.json.example', 'configure.json', function(err) {
@@ -160,8 +158,9 @@ if(command != "quick:configure" && command != "key:generate") {
     process.exit();
   }
 
-  fs.readFile("configure.json", 'utf8', function readFileCallback(err, data){
-      if (err){
+  fs.readFile("configure.json", 'utf8', (err, data) => {
+
+      if (err) {
           console.log(`ERROR: ${err}`);
           console.log("Closing Conduct...");
           process.exit();
@@ -169,14 +168,61 @@ if(command != "quick:configure" && command != "key:generate") {
           var obj = JSON.parse(data); //now it's an object
 
           obj.app.dir = __dirname;
-          obj.app.key = Encryption.random();
 
           var json = JSON.stringify(obj, null, 2); //convert it back to json
-          fs.writeFile("configure.json", json, 'utf8', function(err) {
-              if(err) {
+
+          fs.writeFileSync("configure.json", json, 'utf8', function(err) {
+              if(err)
                   throw err;
-              }
           }); // write it back 
-  }});
+
+          writeKey();
+      }
+  });
+
+  
+
+} else if(command == "key:generate") {
+  writeKey();
+}
+
+function writeKey() {
+  const {Encryption} = require("brainpi"),
+        fs           = require("fs");
+    
+        if(!fs.existsSync("configure.json") && fs.existsSync("configure.json.example")) {
+          fs.rename('configure.json.example', 'configure.json', function(err) {
+            if ( err ) {
+              console.log('ERROR: ' + err);
+              console.log("Closing Conduct...");
+              process.exit();
+            }
+          });
+        } else if (!fs.existsSync("configure.json") && !fs.existsSync("configure.json.example")) {
+          console.log("ERROR: no 'configure.json' or 'configure.json.example' file found!  Please re-clone your project.")
+          console.log("Closing Conduct...");
+          process.exit();
+        }
+      
+        fs.readFile("configure.json", 'utf8', function readFileCallback(err, data){
+            if (err){
+
+                console.log(`ERROR: ${err}`);
+                console.log("Closing Conduct...");
+                process.exit();
+
+            } else {
+
+                var obj = JSON.parse(data); //now it's an object
+    
+                obj.app.key = Encryption.random();
+      
+                var json = JSON.stringify(obj, null, 2); //convert it back to json
+                fs.writeFileSync("configure.json", json, 'utf8', function(err) {
+                    if(err) {
+                        throw err;
+                    }
+                }); // write it back 
+        }});
 
 }

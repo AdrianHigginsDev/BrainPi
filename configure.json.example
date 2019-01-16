@@ -2,34 +2,26 @@
   "app": {
     "name": "BrainPi",
     "environment": "development",
+    "port": "8080",
     "key": "",
     "dir": "/project/directory"
   },
   "data": {
     "mysql_example": {
       "type": "MySQL"
-    },
-    "csv_example": {
-      "type": "CSV"
-    },
+    }
   },
   "database": {
     "mysql_example": {
       "connection": "MySql",
       "host": "127.0.0.1",
       "port": "3306",
-      "database": "node",
+      "database": "",
       "username": "root",
       "password": ""
     }
   },
-  "filesystem": {
-    "csv_example": {
-      "type": "Csv",
-      "ref": "public",
-      "path": "data/csv_example/"
-    },
-  },
+  "filesystem": {},
   "mail": {
     "service": "your-email-service",
     "username": "your-email",

@@ -19,7 +19,8 @@ const viewEngineSettings       = Bootstrap.templateEngine(),
       routeDirectoryHttp       = Bootstrap.routesDirectoryHttp(),
       routeDirectoryApi        = Bootstrap.routesDirectoryApi(),
       errorDirectory           = Bootstrap.errorViewDirectory(),
-      env                      = Init.readConfiguration().app.environment;
+      env                      = Init.readConfiguration().app.environment,
+      port                     = isNaN(Init.readConfiguration().app.port) ? 8000 : parseInt(Init.readConfiguration().app.port);
 /*===========================================
   Turn On Specified View Engine, If Using One
 ============================================*/
@@ -33,11 +34,12 @@ express.use(expressClass.static(__dirname + '/public'));
 express.use(bodyParser.json());
 express.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
-  })); 
+})); 
 /*===========================================
   Launch Our Server
 ============================================*/
-server.listen(8000, "0.0.0.0");
+server.listen(port, "0.0.0.0");
+console.log(`Server Running On Port: ${port}`)
 /*===========================================
   Exception Handling On Enviroment Modes
 ============================================*/
