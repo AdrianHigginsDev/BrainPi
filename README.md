@@ -63,7 +63,7 @@ Once you have verified both **Node** and **NPM** have been installed, you're rea
 The first thing you'll want to do is open up your command line to your projects directory. Once in there, run:
 
 ```
-git clone https://github.com/AHiggins98/BrainPi.git
+git clone https://github.com/AdrianHigginsDev/BrainPi.git
 ```
 
 This should install the latest copy of **BrainPI** to your computer.
