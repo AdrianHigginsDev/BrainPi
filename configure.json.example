@@ -6,11 +6,6 @@
     "key": "",
     "dir": "/project/directory"
   },
-  "data": {
-    "mysql_example": {
-      "type": "MySQL"
-    }
-  },
   "database": {
     "mysql_example": {
       "connection": "MySql",
@@ -21,7 +16,13 @@
       "password": ""
     }
   },
-  "filesystem": {},
+  "filesystem": {
+    "public_file_system": {
+      "type": "files",
+      "ref": "public",
+      "path": "public/files"
+    }
+  },
   "mail": {
     "service": "your-email-service",
     "username": "your-email",
